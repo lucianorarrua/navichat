@@ -6,14 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Navichat - Enviar</title>
     <link rel="stylesheet" href="/public/pages/send/styles.css" />
+    <link rel="stylesheet" href="/public/shared/global.css" />
     <link rel="stylesheet" href="/public/shared/bootstrap.css" />
-    <script src="/public/pages/send/index.js" defer></script>
+    <script src="/public/pages/send/index.js" type="module" defer></script>
     <script src="/node_modules/socket.io/client-dist/socket.io.js"></script>
   </head>
   <body>
     <section class="my-container">
       <article class="send-wrapper">
-        <h2 class="title">Enviar mensaje</h2>
+        <div class="mb-3">
+          <label for="transmitter" class="form-label">Tu nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="transmitter"
+            maxlength="10"
+            placeholder="Tu nombre"
+          />
+          <div id="transmitterHelp" class="form-text">
+            Si lo envías vacío el mensaje será anónimo
+          </div>
+        </div>
+        <h3 class="title">Enviar mensaje</h3>
         <form id="message-form">
           <div class="mb-3">
             <label for="langs" class="form-label">Voz</label>
@@ -21,18 +35,43 @@
           </div>
           <div class="mb-3">
             <label for="message" class="form-label">Mensaje</label>
-            <textarea required class="form-control" id="message" rows="4" maxlength="125"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="transmitter" class="form-label">Tu nombre</label>
-            <input type="text" class="form-control" id="transmitter" maxlength="10" />
-            <div id="transmitterHelp" class="form-text">
-              Si lo envías vacío el mensaje será anónimo
-            </div>
+            <textarea
+              required
+              class="form-control"
+              id="message"
+              rows="4"
+              maxlength="125"
+              placeholder="Escribe el texto que deseas enviar"
+            ></textarea>
           </div>
           <button type="submit" class="btn btn-success">¡Enviar!</button>
         </form>
       </article>
+      <article class="send-wrapper">
+        <h3 class="title">Enviar sonido</h3>
+        <div class="buttons-wrapper">
+        </div>
+      </article>
     </section>
+    <footer>
+      <div>
+        Developed by
+        <strong
+          ><a href="https://www.github.com/lucianorarrua" target="_blank" title="github"
+            >Luciano Arrúa</a
+          ></strong
+        >
+      </div>
+      <div class="stealth">
+        Icons made by
+        <a href="https://www.flaticon.com/authors/berkahicon" title="berkahicon"
+          >berkahicon</a
+        >
+        and <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
+        <a href="https://www.flaticon.com/" title="Flaticon"
+          >www.flaticon.com</a
+        >
+      </div>
+    </footer>
   </body>
 </html>

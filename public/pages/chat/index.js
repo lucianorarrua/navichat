@@ -1,13 +1,28 @@
+import sounds from "/public/shared/data/sounds.js";
+
 const socket = io();
 
 const configSocket = () => {
     // No se pasa parámetro porque por defecto apunta a la dirección del servidor
-    // Nuevos mensajes enviados desde el servidor  
+    // Nuevos mensajes enviados a través del socket  
     socket.on('newMessage', (data) => {
         try {
             const { text, voiceName, transmitter } = data;
             addMessageToChat({ text, transmitter })
             playTTS({ text, voiceName });
+        } catch (error) {
+            console.warn('Error newMessage', data)
+            console.error(error);
+        }
+    })
+    // Nuevos sonidos enviados a través del socket 
+    socket.on('newSound', (data) => {
+        try {
+            const { soundName, transmitter } = data;
+            const sound = sounds[soundName]
+            const text = `Envió un sonido ${sound.emoji || soundName}`
+            addMessageToChat({ text, transmitter })
+            playSound(soundName);
         } catch (error) {
             console.warn('Error newMessage', data)
             console.error(error);
@@ -23,10 +38,12 @@ const configSocket = () => {
 }
 
 /**
- * Emite el sonido seleccionado. // TODO falta definir
+ * Emite el sonido seleccionado.
  */
-const playSound = () => {
-    console.log('reproducir aplausos');
+const playSound = (soundName) => {
+    const { sound_url } = sounds[soundName]
+    var soundObject = new Audio(sound_url);
+    soundObject.play();
 }
 
 /**
@@ -76,5 +93,8 @@ const getVoicesByLang = (lang) => {
 /**
  * START SCRIPT
  */
+
 // Inicia y configura el socket
 configSocket();
+//Esto oculta el mensaje de "hacer click para habilitar los sonidos"
+document.querySelector("body").addEventListener("click", function () { document.querySelector("#sounds-note").classList.add("hidden") })

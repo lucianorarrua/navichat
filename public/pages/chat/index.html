@@ -6,11 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Navichat - Visor</title>
     <link rel="stylesheet" href="/public/pages/chat/styles.css" />
+    <link rel="stylesheet" href="/public/shared/global.css" />
     <link rel="stylesheet" href="/public/shared/bootstrap.css" />
-    <script src="/public/pages/chat/index.js" defer></script>
+    <script src="/public/pages/chat/index.js" type="module" defer></script>
     <script src="/node_modules/socket.io/client-dist/socket.io.js"></script>
   </head>
   <body>
-    <section class="chat-wrapper"></section>
+    <section class="chat-wrapper">
+    </section>
+    <p id="sounds-note">Haga click en cualquier lugar para habilitar los sonidos especiales</p>
+    <footer>
+      <div>
+        Developed by
+        <strong
+          ><a href="https://www.github.com/lucianorarrua" target="_blank" title="github"
+            >Luciano Arrúa</a
+          ></strong
+        >
+      </div>
+    </footer>
   </body>
 </html>

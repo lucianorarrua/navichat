@@ -1,10 +1,14 @@
 /* DEPENDENCIES */
-const http = require('http') // its a default package of node.js
-const express = require('express')
-const { Server } = require("socket.io");
-const path = require('path')// default package to make path of directory 
+import http from "http";
+import express from "express";
+import { Server } from "socket.io";
+import path from "path";// default package to make path of directory 
+import { fileURLToPath } from 'url'; // Necesario para obtener el __dirname
+import { dirname } from 'path'; // Necesario para obtener el __dirname
 
 /* CONFIG */
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const app = express()
 const server = http.createServer(app);
 const publicDirPath = path.join(__dirname)
@@ -56,6 +60,13 @@ io.on('connection', (socket) => {
         // { text, voiceName, transmitter }
         //Si se recibe un nuevo mensaje, lo guarda agrega a la cola
         messajesQueue.push(newMessage);
+    })
+
+    /* SONIDOS RECIBIDOS DESDE TRANSMISORES*/
+    socket.on('sound', (newSound) => {
+        // { soundName, transmitter }
+        //Si se recibe un nuevo sonido, lo transmite por el socket
+        io.emit('newSound', newSound)
     })
 
     socket.on('disconnect', () => {
