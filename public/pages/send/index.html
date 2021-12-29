@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navichat - Enviar</title>
+    <link rel="stylesheet" href="/public/pages/send/styles.css" />
+    <link rel="stylesheet" href="/public/shared/bootstrap.css" />
+    <script src="/public/pages/send/index.js" defer></script>
+    <script src="/node_modules/socket.io/client-dist/socket.io.js"></script>
+  </head>
+  <body>
+    <section class="my-container">
+      <article class="send-wrapper">
+        <h2 class="title">Enviar mensaje</h2>
+        <form id="message-form">
+          <div class="mb-3">
+            <label for="langs" class="form-label">Voz</label>
+            <select id="langs" class="form-select"></select>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Mensaje</label>
+            <textarea required class="form-control" id="message" rows="4" maxlength="125"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="transmitter" class="form-label">Tu nombre</label>
+            <input type="text" class="form-control" id="transmitter" maxlength="10" />
+            <div id="transmitterHelp" class="form-text">
+              Si lo envías vacío el mensaje será anónimo
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success">¡Enviar!</button>
+        </form>
+      </article>
+    </section>
+  </body>
+</html>
